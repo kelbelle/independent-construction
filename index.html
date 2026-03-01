@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Independent Construction | Building with Integrity</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Header / Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s;
+    }
+
+    header.scrolled {
+      background: #000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .logo span {
+      color: #bd0b0b; /* orange accent for construction feel */
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #bd0b0b;
+    }
+
+    .phone {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #bd0b0b;
+      text-decoration: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      background: url('images/white_tile_shower.jpg') no-repeat center center/cover;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: white;
+      padding-left: 8%;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.45); /* dark overlay for text readability */
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+    }
+
+    /* Services Section */
+    .services {
+      padding: 6rem 5% 4rem;
+      background: #f8f8f8;
+      text-align: center;
+    }
+
+    .services h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .services p.intro {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      color: #555;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .service-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .service-info {
+      padding: 1.8rem;
+    }
+
+    .service-info h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #bd0b0b;
+    }
+
+    .service-info p {
+      color: #666;
+    }
+
+    .service-area {
+      margin-top: 5rem;
+      padding: 3rem 5%;
+      background: #fff;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    .service-area h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .area-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .area-list li {
+      font-size: 1.3rem;
+      color: #444;
+      list-style: none;
+    }
+
+    .area-list li::before {
+      content: "• ";
+      color: #bd0b0b;
+      font-size: 1.8rem;
+      margin-right: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: #ccc;
+      padding: 3rem 5% 1.5rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-section h3 {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .footer-bottom {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #444;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero {
+        padding-left: 5%;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+      }
+
+      .services {
+        padding: 4rem 5% 3rem;
+      }
+
+      .services h2 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="images/logo.bmp" alt="Independent Construction Logo" style="height: 50px; width: auto;">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="tel:+14064516650" class="phone">(406) 451-6650</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Serving the Bozeman Area,<br>One Project at a Time</h1>
+      <p>Quality Craftsmanship • On Time • On Budget</p>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>Our Remodeling Services</h2>
+    <p class="intro">At Independent Construction, we specialize in transforming homes with expert craftsmanship tailored to your vision. From full renovations to targeted room updates, we handle every detail with care and precision.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1556911220-b68c31e4288d?auto=format&fit=crop&q=80" alt="Modern kitchen remodeling">
+        <div class="service-info">
+          <h3>Kitchen Remodeling</h3>
+          <p>Custom layouts, premium countertops, modern appliances, and efficient designs that make your kitchen the heart of the home.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80" alt="Spa-like bathroom remodeling">
+        <div class="service-info">
+          <h3>Bathroom renovations</h3>
+          <p>From luxurious master baths to functional updates—walk-in showers, vanities, tiling, and fixtures that blend style and comfort.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1615874959474-d6090a0bee18?auto=format&fit=crop&q=80" alt="Cozy bedroom remodeling">
+        <div class="service-info">
+          <h3>Flooring</h3>
+          <p>Create peaceful retreats with new flooring, lighting, built-ins, paint, and custom closets designed for rest and relaxation.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80" alt="Functional laundry room remodeling">
+        <div class="service-info">
+          <h3>Custom cabinets and storage</h3>
+          <p>Turn utility spaces into organized, efficient areas with custom cabinets, folding stations, and smart storage solutions.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80" alt="Versatile garage remodeling">
+        <div class="service-info">
+          <h3>Additions</h3>
+          <p>Epoxy floors, organization systems, workshop setups, or conversion to usable living/storage space—built tough and practical.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4cb0d?auto=format&fit=crop&q=80" alt="Open common area remodeling">
+        <div class="service-info">
+          <h3>General Remodeling</h3>
+          <p>Open up living rooms, dining areas, and family spaces with updated flooring, lighting, and flow for modern living.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-area">
+      <h3>Proudly Serving These Communities</h3>
+      <ul class="area-list">
+        <li>Bozeman</li>
+        <li>Belgrade</li>
+        <li>Three Forks</li>
+        <li>Helena</li>
+        <li>Butte</li>
+        <li>Big Sky</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Independent Construction</h3>
+        <p>Bozeman's trusted general contractor since 2010.<br>
+           Specializing in residential, commercial, and renovations.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Phone: <a href="tel:+14064516650" style="color: #bd0b0b;">(406) 451-6650</a></p>
+        <p>Email: clays email@email</p>
+        <p>Serving the Greater Bozeman Area</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="index.html" style="color: #ccc; text-decoration: none;">Home</a></li>
+          <li><a href="about.html" style="color: #ccc; text-decoration: none;">About</a></li>
+          <li><a href="#services" style="color: #ccc; text-decoration: none;">Services</a></li>
+          <li><a href="portfolio.html" style="color: #ccc; text-decoration: none;">Portfolio</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Independent Construction. All rights reserved.<br>
+      Proudly serving the Bozeman area.
+    </div>
+  </footer>
+
+  <script>
+    // Simple scroll effect for header
+    window.addEventListener('scroll', () => {
+      document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>
