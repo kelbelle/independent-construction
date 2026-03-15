@@ -5,294 +5,343 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Independent Construction | Building with Integrity</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
 
-    /* Header / Navbar */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      color: white;
-      z-index: 1000;
-      padding: 1rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.3s;
-    }
 
-    header.scrolled {
-      background: #000;
-    }
+:root {
+  --fs-base: clamp(1rem, 2.2vw + 0.8rem, 1.125rem);
+  --fs-h1: clamp(2.5rem, 6vw + 1rem, 4.5rem);
+  --fs-h2: clamp(2rem, 5vw + 0.5rem, 3rem);
+  --fs-h3: clamp(1.4rem, 3.5vw + 0.5rem, 1.8rem);
+}
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      text-decoration: none;
-      color: #fff;
-    }
+body {
+  font-size: var(--fs-base);
+}
 
-    .logo span {
-      color: #bd0b0b; /* orange accent for construction feel */
-    }
+/* Header / Navbar */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 1000;
+  padding: 0.8rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-      align-items: center;
-    }
+header.scrolled {
+  background: #000;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+.logo img {
+  height: clamp(40px, 8vw, 60px);
+  width: auto;
+  display: block;
+}
 
-    nav a:hover {
-      color: #bd0b0b;
-    }
+nav {
+  display: flex;
+  align-items: center;
+}
 
-    .phone {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #bd0b0b;
-      text-decoration: none;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+}
 
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      min-height: 600px;
-      background: url('images/white_tile_shower.jpg') no-repeat center center/cover;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      color: white;
-      padding-left: 8%;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.45); /* dark overlay for text readability */
-    }
+nav a:hover,
+nav a:focus {
+  color: #bd0b0b;
+}
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-    }
+.phone {
+  color: #bd0b0b;
+  font-weight: bold;
+  text-decoration: none;
+}
 
-    .hero h1 {
-      font-size: 4.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.1;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-    }
+/* Hamburger (hidden on large screens) */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
 
-    .hero p {
-      font-size: 1.5rem;
-      margin-bottom: 2rem;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-    }
+/* Hero Section */
+.hero {
+  min-height: 80vh;
+  height: 80vh;/*changed from 100 to 85 so its not covering the full page*/
+  background: url('images/white_tile_shower.jpg') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 0 5%;
+}
 
-    /* Services Section */
-    .services {
-      padding: 6rem 5% 4rem;
-      background: #f8f8f8;
-      text-align: center;
-    }
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
 
-    .services h2 {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      color: #222;
-    }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+}
 
-    .services p.intro {
-      font-size: 1.3rem;
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      color: #555;
-    }
+.hero h1 {
+  font-size: var(--fs-h1);
+  margin-bottom: 1.2rem;
+  line-height: 1.1;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+.hero p {
+  font-size: clamp(1.2rem, 3vw + 0.5rem, 1.6rem);
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
 
-    .service-card {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+/* Services Section */
+.services {
+  padding: clamp(4rem, 8vw, 6rem) 5% 4rem;
+  background: #f8f8f8;
+  text-align: center;
+}
 
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
+.services h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: 1.5rem;
+  color: #222;
+}
 
-    .service-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
+.services p.intro {
+  font-size: clamp(1.1rem, 2.5vw + 0.3rem, 1.3rem);
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: #555;
+}
 
-    .service-info {
-      padding: 1.8rem;
-    }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-    .service-info h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #bd0b0b;
-    }
+.service-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    .service-info p {
-      color: #666;
-    }
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
 
-    .service-area {
-      margin-top: 5rem;
-      padding: 3rem 5%;
-      background: #fff;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-    }
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 
-    .service-area h3 {
-      font-size: 2.2rem;
-      margin-bottom: 1.5rem;
-      color: #222;
-    }
+.service-info {
+  padding: 1.5rem;
+}
 
-    .area-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem 3rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
+.service-info h3 {
+  font-size: var(--fs-h3);
+  margin-bottom: 1rem;
+  color: #bd0b0b;
+}
 
-    .area-list li {
-      font-size: 1.3rem;
-      color: #444;
-      list-style: none;
-    }
+/* Service area */
+.service-area {
+  margin-top: 4rem;
+  padding: 3rem 5%;
+  background: #fff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
 
-    .area-list li::before {
-      content: "• ";
-      color: #bd0b0b;
-      font-size: 1.8rem;
-      margin-right: 0.5rem;
-    }
+.service-area h3 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 1.5rem;
+}
 
-    /* Footer */
-    footer {
-      background: #222;
-      color: #ccc;
-      padding: 3rem 5% 1.5rem;
-      text-align: center;
-    }
+.area-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem 2.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 2rem;
-    }
+.area-list li {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: #444;
+  list-style: none;
+}
 
-    .footer-section {
-      flex: 1;
-      min-width: 250px;
-    }
+.area-list li::before {
+  content: "• ";
+  color: #bd0b0b;
+  font-size: 1.6rem;
+  margin-right: 0.5rem;
+}
 
-    .footer-section h3 {
-      color: white;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
+/* Footer */
+footer {
+  background: #222;
+  color: #ccc;
+  padding: clamp(3rem, 6vw, 4rem) 5% 2rem;
+  text-align: center;
+}
 
-    .footer-bottom {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #444;
-      font-size: 0.9rem;
-    }
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
 
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        padding: 1rem;
-      }
+.footer-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
 
-      nav ul {
-        margin-top: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #444;
+  font-size: 0.95rem;
+}
 
-      .hero {
-        padding-left: 5%;
-        text-align: center;
-        justify-content: center;
-      }
+/* ────────────────────────────────────────
+   MOBILE STYLES (base = mobile-first)
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  header {
+    padding: 0.8rem 4%;
+    flex-wrap: wrap;
+  }
 
-      .hero h1 {
-        font-size: 3rem;
-      }
+  nav ul {
+    display: none;           /* hide normal menu */
+    flex-direction: column;
+    width: 100%;
+    background: rgba(0,0,0,0.95);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1.5rem 0;
+  }
 
-      .hero p {
-        font-size: 1.3rem;
-      }
+  nav ul.active {
+    display: flex;
+  }
 
-      .services {
-        padding: 4rem 5% 3rem;
-      }
+  nav li {
+    margin: 0.8rem 0;
+    text-align: center;
+  }
 
-      .services h2 {
-        font-size: 2.5rem;
-      }
-    }
+  nav a {
+    font-size: 1.3rem;
+    padding: 0.6rem;
+    display: block;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6%;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+}
+
+/* Larger tablets / small desktops */
+@media (min-width: 901px) {
+  nav ul {
+    display: flex !important; /* force visible */
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  header {
+    padding: 1rem 5%;
+  }
+}
+
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="images/logo.bmp" alt="Independent Construction Logo" style="height: 50px; width: auto;">
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="tel:+14064516650" class="phone">(406) 451-6650</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <a href="index.html" class="logo">
+    <img src="images/logo.bmp" alt="Independent Construction Logo">
+  </a>
+
+  <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('nav ul').classList.toggle('active')">☰</button>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="tel:+14064516650" class="phone">(406) 451-6650</a></li>
+    </ul>
+  </nav>
+</header>
 
   <section class="hero">
     <div class="hero-content">
@@ -372,7 +421,7 @@
     <div class="footer-content">
       <div class="footer-section">
         <h3>Independent Construction</h3>
-        <p>Bozeman's trusted general contractor since 2010.<br>
+        <p>Bozeman's trusted general contractor since 2010.
            Specializing in residential, commercial, and renovations.</p>
       </div>
       

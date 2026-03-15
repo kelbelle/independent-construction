@@ -4,177 +4,299 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us | Independent Construction</title>
+
   <style>
-       * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
 
-    /* Header / Navbar */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      color: white;
-      z-index: 1000;
-      padding: 1rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.3s;
-    }
+/* Fluid typography */
+:root {
+  --fs-base: clamp(1rem, 2.2vw + 0.8rem, 1.125rem);
+  --fs-h1: clamp(2.5rem, 6vw + 1rem, 4.5rem);
+  --fs-h2: clamp(2rem, 5vw + 0.5rem, 3rem);
+  --fs-h3: clamp(1.4rem, 3.5vw + 0.5rem, 1.8rem);
+}
 
-    header.scrolled {
-      background: #000;
-    }
+body {
+  font-size: var(--fs-base);
+}
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      text-decoration: none;
-      color: #fff;
-    }
+/* Header / Navbar */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  z-index: 1000;
+  padding: 0.8rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
 
-    .logo span {
-      color: #bd0b0b; /* orange accent for construction feel */
-    }
+header.scrolled {
+  background: #000;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-      align-items: center;
-    }
+.logo img {
+  height: clamp(40px, 8vw, 60px);
+  width: auto;
+  display: block;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+nav {
+  display: flex;
+  align-items: center;
+}
 
-    nav a:hover {
-      color: #bd0b0b;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+}
 
-    .phone {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #bd0b0b;
-      text-decoration: none;
-    }
-    footer {
-      background: #222;
-      color: #ccc;
-      padding: 3rem 5% 1.5rem;
-      text-align: center;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
 
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 2rem;
-    }
+nav a:hover,
+nav a:focus {
+  color: #bd0b0b;
+}
 
-    .footer-section {
-      flex: 1;
-      min-width: 250px;
-    }
+.phone {
+  color: #bd0b0b;
+  font-weight: bold;
+  text-decoration: none;
+}
 
-    .footer-section h3 {
-      color: white;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
-    }
+/* Hamburger (hidden on large screens) */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
 
-    .footer-bottom {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid #444;
-      font-size: 0.9rem;
-    }
+/* Hero Section */
+.hero {
+  min-height: 80vh;
+  height: 100vh;
+  background: url('images/white_tile_shower.jpg') no-repeat center center/cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 0 5%;
+}
 
- 
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
 
-    .about-content {
-      padding: 5rem 5% 6rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      background: #fff;
-    }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+}
 
-    .about-content h2 {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      color: #222;
-      text-align: center;
-    }
+.hero h1 {
+  font-size: var(--fs-h1);
+  margin-bottom: 1.2rem;
+  line-height: 1.1;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
 
-    .about-text {
-      font-size: 1.2rem;
-      color: #444;
-      max-width: 900px;
-      margin: 0 auto 3rem;
-      line-height: 1.8;
-    }
+.hero p {
+  font-size: clamp(1.2rem, 3vw + 0.5rem, 1.6rem);
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
 
-    .about-text p {
-      margin-bottom: 1.5rem;
-    }
 
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
 
-    .value-card {
-      background: #f8f8f8;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+.about-text {
+  max-width: 720px;                 /* ideal reading width ~65–75 chars/line */
+  margin: 0 auto 3.5rem;            /* centers paragraphs block + spacing */
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+.about-content {
+  padding: 110px 5% 5rem;          /* top clearance for fixed nav + good bottom breathing room */
+  margin: 0 auto;
+  max-width: 1100px;                /* wider container to allow heading to breathe on large screens */
+  width: 100%;
+}
 
-    .value-card h3 {
-      font-size: 1.6rem;
-      color: #bd0b0b;
-      margin-bottom: 1rem;
-    }
+.about-content h2 {
+  text-align: center;
+  max-width: 900px;                 /* ← heading can be wider than body text for emphasis */
+  margin: 0 auto 2.5rem;            /* centers it + nice space below */
+  font-size: clamp(2.2rem, 5.5vw + 0.5rem, 3.2rem);          /* uses your fluid clamp sizing */
+  line-height: 1.15;
+  color: #222;                      /* slightly darker for prominence – optional */
+}
 
-    @media (max-width: 768px) {
-      .about-content { padding: 3rem 5% 4rem; }
-    }
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        padding: 1rem;
-      }
+.values-grid {
+  max-width: 720px;                 /* match body text width for consistency */
+  margin: 0 auto 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.value-card {
+  background: #f8f8f8;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;                 /* optional – looks nice when stacked */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-      nav ul {
-        margin-top: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
 
-  </style>
+.value-card h3 {
+  color: #bd0b0b;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.about-content > p:last-of-type {
+  max-width: 720px;
+  margin: 4rem auto 2rem;
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+/* Bonus: Center the call-to-action paragraph too */
+
+/* Footer */
+footer {
+  background: #222;
+  color: #ccc;
+  padding: clamp(3rem, 6vw, 4rem) 5% 2rem;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.footer-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #444;
+  font-size: 0.95rem;
+}
+
+/* ────────────────────────────────────────
+   MOBILE STYLES (base = mobile-first)
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  header {
+    padding: 0.8rem 4%;
+    flex-wrap: wrap;
+  }
+
+  nav ul {
+    display: none;           /* hide normal menu */
+    flex-direction: column;
+    width: 100%;
+    background: rgba(0,0,0,0.95);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1.5rem 0;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav li {
+    margin: 0.8rem 0;
+    text-align: center;
+  }
+
+  nav a {
+    font-size: 1.3rem;
+    padding: 0.6rem;
+    display: block;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6%;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
+}
+
+/* Larger tablets / small desktops */
+@media (min-width: 901px) {
+  nav ul {
+    display: flex !important; /* force visible */
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  header {
+    padding: 1rem 5%;
+  }
+}
+</style>
 </head>
 <body>
 
   <header>
-    <img src="images/logo.bmp" alt="Independent Construction Logo" style="height: 50px; width: auto;">
+  <a href="index.html" class="logo">
+  <img src="images/logo.bmp" alt="Independent Construction Logo">
+</a>
+<button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('nav ul').classList.toggle('active')">☰</button>
+
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -187,6 +309,8 @@
   </header>
 
   
+<div class="navbar-spacer"></div>
+
 
   <section class="about-content">
     <h2>Building with Integrity in the Bozeman Area</h2>
